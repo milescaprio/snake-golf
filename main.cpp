@@ -13,7 +13,6 @@ I X=5;
 I Y=5;
 L o[20][20];
 L u;
-I r(){return rand()%20;}
 struct C {
     C*h=0;
     I x=0;
@@ -31,7 +30,7 @@ V g(C*t,I N) {
     if(!N){f=t;return;}
     t->Z();
     g(t->h,N-1);
-  }
+}
 V v(){
     for(;;){
         L a=getchar();
@@ -39,7 +38,7 @@ V v(){
         u=a;
     }
 }
-I main() {
+I main(){
     g(b,5);
     thread T(v);
     for(;;){
@@ -55,7 +54,7 @@ I main() {
             c=c->h;
         }
         for(I i=0;i<20;i++) {
-            for (I j=0;j<20;j++) {
+            for(I j=0;j<20;j++) {
                 printf("%c",o[i][j]);
             }
             printf("\n");
@@ -72,8 +71,8 @@ I main() {
         if(f->x>19|f->y>19|f->y<0|f->x<0) exit(s);
         if(f->x==X&f->y==Y) {
             s++;
-            X=r();Y=r();
-        } else {
+            X=rand()%20;Y=rand()%20;
+        }else{
             C*p=b;
             b=b->h;
             delete p;
