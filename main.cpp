@@ -18,29 +18,20 @@ struct C {
     C*h=0;
     I x=0;
     I y=0;
-    //old//C*n(I N) {
-    //old//    if (!N)return this;
-    //old//    return h->n(N-1);
-    //old//}
     V Z() {
         C*R=new C(*this);
         R->x+=d%2;
         R->y+=d/2;
         h=R;
     } 
-    //old//V g(C*t,I N) {
-    //old//    if(!N)return;
-    //old//    Z();
-    //old//    h->g(N-1);
-    //old//}
 };
 C*b=new C;
 C*f;
-//new//V g(C*t,I N) {
-//new//    if(!N){f=t;return;}
-//new//    t->Z();
-//new//    t->h->g(t,N-1);
-//new//  }
+V g(C*t,I N) {
+    if(!N){f=t;return;}
+    t->Z();
+    g(t->h,N-1);
+  }
 V v(){
     for(;;){
         L a=getchar();
@@ -49,9 +40,7 @@ V v(){
     }
 }
 I main() {
-    //old//b->g(5);
-    //new//g(b,5);
-    //old//f=b->n(5);
+    g(b,5);
     thread T(v);
     for(;;){
         memset(o,' ',400);
