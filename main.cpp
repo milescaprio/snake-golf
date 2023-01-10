@@ -38,8 +38,8 @@ C*b=new C;
 C*f;
 //new//V g(C*t,I N) {
 //new//    if(!N){f=t;return;}
-//new//    Z();
-//new//    h->g(t,N-1);
+//new//    t->Z();
+//new//    t->h->g(t,N-1);
 //new//  }
 V v(){
     for(;;){
