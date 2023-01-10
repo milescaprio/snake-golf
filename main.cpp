@@ -18,10 +18,9 @@ struct C {
     I x=0;
     I y=0;
     V Z() {
-        C*R=new C(*this);
-        R->x+=d%2;
-        R->y+=d/2;
-        h=R;
+        h=new C(*this);
+        h->x+=d%2;
+        h->y+=d/2;
     } 
 };
 C*b=new C;
