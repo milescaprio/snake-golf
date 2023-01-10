@@ -47,22 +47,18 @@ I main() {
     b->g(5);
     f=b->n(5);
     thread T(v);
-    //new//memset(o,' ',400);
-    //new//memset(o,'o',5);
     for(;;){
-        //old//memset(o,' ',400);
-        //old//C*c=b;
-        //old//while(c){
-            //old//L&p=o[c->y][c->x];
-            //new//L&p=o[f->y][f->x];
-            //new//o[b->y]o[b->x]=' ';
+        memset(o,' ',400);
+        C*c=b;
+        while(c){
+            L&p=o[c->y][c->x];
             o[Y][X] = 'x';
             if (p=='O') {
                 exit(s);
             }
             p='O';
-            //old//c=c->h;
-        //old//}
+            c=c->h;
+        }
         for(I i=0;i<20;i++) {
             for (I j=0;j<20;j++) {
                 printf("%c",o[i][j]);
