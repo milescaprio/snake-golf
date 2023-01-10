@@ -52,7 +52,7 @@ I main() {
     for(;;){
         //old//memset(o,' ',400);
         //old//C*c=b;
-        //old//while(c) {
+        //old//while(c){
             //old//L&p=o[c->y][c->x];
             //new//L&p=o[f->y][f->x];
             //new//o[b->y]o[b->x]=' ';
