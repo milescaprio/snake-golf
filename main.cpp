@@ -5,24 +5,18 @@
 #include <cstdlib>
 using namespace std;
 typedef int I;
-I d=1;
-I s=0;
-I X=5;
-I Y=5;
-char o[20][20];
-char u;
+I d=1,s=0,X=5,Y=5,i,j;
+char o[20][20],u;
 struct C {
     C*h=0;
-    I x=0;
-    I y=0;
+    I x=0,y=0;
     void Z() {
         h=new C(*this);
         h->x+=d%2;
         h->y+=d/2;
     } 
 };
-C*b=new C;
-C*f;
+C*b=new C,*f;
 void g(C*t,I N) {
     if(!N){f=t;return;}
     t->Z();
@@ -50,14 +44,14 @@ I main(){
             p='O';
             c=c->h;
         }
-        for(I i=0;i<20;i++) {
-            for(I j=0;j<20;j++) {
+        for(i=0;i<20;i++) {
+            for(j=0;j<20;j++) {
                 printf("%c",o[i][j]);
             }
             printf("\n");
         }
-        this_thread::sleep_for(300ms);
-        for(I i=0;i<20;i++)printf("\n");
+        this_thread::sleep_for(400ms);
+        for(i=0;i<20;i++)printf("\n");
         if(u=='d')d=1;
         if(u=='a')d=-1;
         if(u=='w')d=-2;
