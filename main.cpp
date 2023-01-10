@@ -3,16 +3,18 @@
 #include <chrono>
 #include <thread>
 #include <cstdlib>
-//yeeter
 #define W 20
 #define H 20
 #define S 5
+using namespace std;
 
 int d = 1; //-2, -1, 1 left, 2 up
 int score = 0;
 int a_x = 5;
 int a_y = 5;
 char output[H][W];
+char input;
+bool open = true;
 
 auto r = [](int max) -> int{return rand() % max;};
 
@@ -58,11 +60,34 @@ Cons* front;
 void clrscr() {
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
-    
+
+
+void receive(){
+    //cin.ignore(5, '\n');
+    while(1) {
+        char a = getchar();
+        printf("char : %i", a);
+        if (a != '\n' && a != '\r' && a != ' ')
+        input = getchar();
+    }
+}
+void receivemore() {
+    while(1) receive();
+}
+
 void game() {
+    std::thread rec (receive);
     while(true) {
         std::this_thread::sleep_for(std::chrono::milliseconds(250));
         clrscr();
+        switch (input) {
+            case 'd' : d = 1; break;
+            case 'a' : d = -1; break;
+            case 'w' : d = -2; break;
+            case 's' : d = 2; break;
+        }
+        printf("%c",input);
+        input = 0;
         if (front->x == a_x && front->y == a_y) {
             //eat apple
             score++;
@@ -77,8 +102,6 @@ void game() {
         front->next = front->incr(); //create a new front
         front = front->next; //traverse it
         Cons* temp = back; //save old back
-        printf("%i   %i   %i\n",back->n(0)->x,back->n(1)->x,back->n(2)->x);
-        printf("%i, %i, %i\n", back->y, back->x, (size_t)(back->next));
         back = back->next; //traverse back
         delete temp; //free old back
         memset(output,' ', W*H); //clear buffer
@@ -86,7 +109,6 @@ void game() {
         int i = 0;
         while (curr) {
             i++;
-            printf("%i, %i, %i\n", curr->y, curr->x, (size_t)(curr->next));
             char &p = output[curr->y][curr->x];
             if (p == 'O') {
                 printf("death");
@@ -94,12 +116,10 @@ void game() {
             }
             p = 'O';
             curr = curr->next;
-            printf("%i", (size_t)curr);
         }
-        printf("%i", i);
         for (int i = 0; i < H; i++) {
             for (int j = 0; j < W; j++) {
-                printf("%c", output[i][j]);
+                printf("%c",output[i][j]);
             }
             printf("\n");
         }
@@ -109,15 +129,7 @@ void game() {
 
 int main(void) {
     back->gen_Cons(S); //creates S + 1 linked Cons
-    //printf("%i   %i   %i\n",back->n(0)->x,back->n(1)->x,back->n(2)->x);
-    //return 0;
     front = back->n(S); //get the address of the last Cons, Sth and there's S+1
-    // for(int i = 0; i < 100; i++)    {
-    //     clrscr();
-    //     printf("Bye   World\r");
-    //     printf("Hello");
-    //     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    // }
     game();
     return score;
 }
