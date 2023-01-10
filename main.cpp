@@ -54,7 +54,8 @@ I main() {
         //old//C*c=b;
         //old//while(c) {
             //old//L&p=o[c->y][c->x];
-            //new//L&p=o[c->y][c->x];
+            //new//L&p=o[f->y][f->x];
+            //new//o[b->y]o[b->x]=' ';
             o[Y][X] = 'x';
             if (p=='O') {
                 exit(s);
