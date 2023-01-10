@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <cstring>
 #include <chrono>
 #include <thread>
 #include <cstdlib>
@@ -58,58 +57,31 @@ Cons* back = new Cons; //a linked list order for left to right top to bottom
 Cons* front;
 
 void clrscr() {
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    
 }
-
 
 void receive(){
-    //cin.ignore(5, '\n');
     while(1) {
         char a = getchar();
-        printf("char : %i", a);
-        if (a != '\n' && a != '\r' && a != ' ')
-        input = getchar();
+        if (!(a == '\n' || a == '\r' || a == ' '))
+        input = a;
     }
-}
-void receivemore() {
-    while(1) receive();
 }
 
 void game() {
-    std::thread rec (receive);
+    thread rec (receive);
     while(true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
-        clrscr();
-        switch (input) {
-            case 'd' : d = 1; break;
-            case 'a' : d = -1; break;
-            case 'w' : d = -2; break;
-            case 's' : d = 2; break;
-        }
-        printf("%c",input);
-        input = 0;
-        if (front->x == a_x && front->y == a_y) {
-            //eat apple
-            score++;
-            a_x = r(W); a_y = r(H);
-            continue;
-        }
-        //here we need to:
-        //-gen new seg in front
-        //-set it as next to last seg
-        //-if not eaten apple, 
-            //-free back and set new back to its ptr simulatenously
-        front->next = front->incr(); //create a new front
-        front = front->next; //traverse it
-        Cons* temp = back; //save old back
-        back = back->next; //traverse back
-        delete temp; //free old back
-        memset(output,' ', W*H); //clear buffer
+        memset(output, ' ', W * H); //clear buffer
         Cons* curr = back; //start here for iteration
         int i = 0;
         while (curr) {
             i++;
-            char &p = output[curr->y][curr->x];
+            if (curr->x > 20 || curr->y > 20 || curr->y < 0 || curr->x < 0) {
+                printf("death");
+                break;
+            }
+            char& p = output[curr->y][curr->x];
+            output[a_y][a_x] = 'x';
             if (p == 'O') {
                 printf("death");
                 break; //die
@@ -119,10 +91,33 @@ void game() {
         }
         for (int i = 0; i < H; i++) {
             for (int j = 0; j < W; j++) {
-                printf("%c",output[i][j]);
+                printf("%c", output[i][j]);
             }
             printf("\n");
         }
+
+        this_thread::sleep_for(chrono::milliseconds(200));
+
+        for(int i=0;i<20;i++)printf("\n");
+        switch (input) {
+            case 'd' : d = 1; break;
+            case 'a' : d = -1; break;
+            case 'w' : d = -2; break;
+            case 's' : d = 2; break;
+        }
+        input = 0;
+
+        front->next = front->incr(); //create a new front
+        front = front->next; //traverse it
+        if (front->x == a_x && front->y == a_y) {
+            //eat apple
+            score++;
+            a_x = r(W); a_y = r(H);
+            continue;
+        }
+        Cons* temp = back; //save old back
+        back = back->next; //traverse back
+        delete temp; //free old back
     }
 }
 
