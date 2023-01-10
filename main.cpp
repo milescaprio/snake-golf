@@ -5,19 +5,17 @@
 #include <cstdlib>
 using namespace std;
 typedef int I;
-typedef char L;
-typedef void V;
 I d=1;
 I s=0;
 I X=5;
 I Y=5;
-L o[20][20];
-L u;
+char o[20][20];
+char u;
 struct C {
     C*h=0;
     I x=0;
     I y=0;
-    V Z() {
+    void Z() {
         h=new C(*this);
         h->x+=d%2;
         h->y+=d/2;
@@ -25,14 +23,14 @@ struct C {
 };
 C*b=new C;
 C*f;
-V g(C*t,I N) {
+void g(C*t,I N) {
     if(!N){f=t;return;}
     t->Z();
     g(t->h,N-1);
 }
-V v(){
+void v(){
     for(;;){
-        L a=getchar();
+        char a=getchar();
         if(a!='\n')
         u=a;
     }
@@ -44,7 +42,7 @@ I main(){
         memset(o,' ',400);
         C*c=b;
         while(c){
-            L&p=o[c->y][c->x];
+            char&p=o[c->y][c->x];
             o[Y][X] = 'x';
             if (p=='O') {
                 exit(s);
