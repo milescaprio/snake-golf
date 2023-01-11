@@ -6,7 +6,7 @@
 using namespace std;
 typedef int I;
 I d=1,s=0,X=5,Y=5,i,j;
-char o[20][20],u;
+char o[20][20],u,a;
 struct C {
     C*h=0;
     I x=0,y=0;
@@ -24,7 +24,7 @@ void g(C*t,I N) {
 }
 void v(){
     for(;;){
-        char a=getchar();
+        a=getchar();
         if(a!='\n')
         u=a;
     }
