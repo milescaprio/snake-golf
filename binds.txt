@@ -1,0 +1,52 @@
+a input_temp
+b back
+c curr
+d direction
+e
+f front
+g gen_Cons
+h next
+i iteratorI
+j iteratorJ
+k
+l
+m
+n
+o output
+p temp
+q
+r randomPosition
+s score
+t
+u input
+v receive
+w
+x
+y
+z incr
+A
+B
+C Cons
+D
+E
+F
+G
+H
+I int
+J
+K
+L char //never mind
+M
+N count
+O
+P
+Q
+R ret
+S
+T thread
+U
+V void //never mind
+W
+X apple_x
+Y apple_y
+Z
