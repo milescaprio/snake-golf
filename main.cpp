@@ -71,38 +71,16 @@
 //OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO//
 
 
-using namespace std;
-typedef int I;
-I d=1,s=0,X=5,Y=5,i,j;
-char o[20][20],u;
-struct C {
-    C*h=0;
-    I x=0,y=0;
-    void Z(){
-        h=new C(*this);
-        h->x+=d%2;
-        h->y+=d/2;
-    } 
-};
-C*b=new C,*f;
-void g(C*t,I N){
-    if(!N){f=t;return;}
-    t->Z();
-    g(t->h,N-1);
-}
-void v(){
-    for(;;){
-        char a=getchar();
-        if(a!='\n')
-        u=a;
-    }
-}
-I main(){
-    g(b,5);
-    thread T(v);
-    for(;;){
-        memset(o,' ',400);
-        C*c=b;
+using namespace std;typedef int I;I d=1,s=0,
+X=5,Y=5,i,j;char o[20][20],u;struct C{C*h=0;
+I x=0,y=0;void Z(){h=new C(*this);h->x+=d%2;
+h->y+=d/2;}};C*b=new C,*f;void g(C*t,I N){if
+(     !                              N){f=t;
+return; }t->Z();g(t->h,N-1);}void v( ){for(;
+;){char a=getchar();if(a!='\n')u=a;}}
+I main(){g(b
+,5);thread T(v);for(;;){memset(o,' ',400);C*c=
+    b;
         while(c){
             char&p=o[c->y][c->x];
             o[Y][X] = 'x';
