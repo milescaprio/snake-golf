@@ -10,18 +10,8 @@ char o[20][20],u,a;
 struct C {
     C*h=0;
     I x=0,y=0;
-    void Z() {
-        h=new C(*this);
-        h->x+=d%2;
-        h->y+=d/2;
-    } 
 };
-C*b=new C,*f;
-void g(C*t,I N) {
-    if(!N){f=t;return;}
-    t->Z();
-    g(t->h,N-1);
-}
+C*b=new C;C*f=b;
 void v(){
     for(;;){
         a=getchar();
@@ -30,7 +20,6 @@ void v(){
     }
 }
 I main(){
-    g(b,5);
     thread T(v);
     for(;;){
         memset(o,' ',400);
@@ -44,8 +33,8 @@ I main(){
             p='O';
             c=c->h;
         }
-        for(i=0;i<20;i++) {
-            for(j=0;j<20;j++) {
+        for(i=0;i<20;i++){
+            for(j=0;j<20;j++){
                 printf("%c",o[i][j]);
             }
             printf("\n");
@@ -57,10 +46,12 @@ I main(){
         if(u=='w')d=-2;
         if(u=='s')d=2;
         u=0;
-        f->Z();
+        f->h=new C(*f);
         f=f->h;
-        if(f->x>19|f->y>19|f->y<0|f->x<0) exit(s);
-        if(f->x==X&f->y==Y) {
+        f->x+=d%2;
+        f->y+=d/2;
+        if(f->x>19|f->y>19|f->y<0|f->x<0)exit(s);
+        if(f->x==X&f->y==Y){
             s++;
             X=rand()%20;Y=rand()%20;
         }else{
