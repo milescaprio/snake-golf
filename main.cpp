@@ -18,7 +18,7 @@
 //-16 if you think the snake should segfault when hitting the top and bottom wall instead of exiting and showing the score
 //+28 extra to add death side edge detection
 //yeah add |d==-1&l%20==19|d==1&l%20==0 or something maybe could fit into 
-
+//-9 for int memory leak every cycle lol, i mean will still work
 /*
 
 OOOOOOOO
