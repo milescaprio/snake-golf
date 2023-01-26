@@ -5,8 +5,8 @@ main.o
 .replit
 replit.nix
 Makefile
-\x64
-\Debug
+x64/
+Debug/
 Debug/snake-golf.log
 Debug/snake-golf.tlog/CL.command.1.tlog
 Debug/snake-golf.tlog/snake-golf.lastbuildstate
