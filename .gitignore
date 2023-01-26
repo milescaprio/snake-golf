@@ -6,3 +6,10 @@ main.o
 replit.nix
 Makefile
 \x64
+\Debug
+Debug/snake-golf.log
+Debug/snake-golf.tlog/CL.command.1.tlog
+Debug/snake-golf.tlog/snake-golf.lastbuildstate
+Debug/snake-golf.tlog/unsuccessfulbuild
+Debug/vc143.idb
+Debug/vc143.pdb
