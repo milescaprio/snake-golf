@@ -15,10 +15,19 @@
 //-2 extra if (a) and (b) are both done
 //-16 if you think the snake should segfault when hitting the top and bottom wall instead of exiting and showing the score
 //-9 if memory leaks
+//+17 or less to make the gap happen before the sleep (either change to two for loops or offset the big one by 20 for
+//the index and change the checks to the bottom)
 // 
-//(done) -16 by obfuscation of character to direction conversion
-//(done) -2 by swapping F and 400
-//(done) -1 by double-initialize
+//(done) -1 memset in for loop
+//(done) -3 getchar in for loop
+//(done) -1 pointer incr in for loop
+//(done) -3 direction increment done in if loop
+//(done) -1 added init to for loop
+//(done) +1 fixed extra byte read bug :(
+//(done) -2 used more commas
+//(done) -16 onelooped all the printf, changes location
+
+//469
 using namespace std;
 typedef int I;
 I d=1,s=0,A=9,i,F=400;
@@ -29,31 +38,21 @@ struct C {
 };
 C*b=new C,*f=b;
 I main(){
-    thread T([]{for(;;){
-        a=getchar();
-        u=a=='\n'?u:a;
-    }});
-    for(;;){
-        memset(o,' ',F);
-        C*c=b;
-        for(;c;){
-            o[A]='x';
-            if (o[c->l]=='O'|f->l>F|f->l<0)
+    thread T([]{for(;a=getchar();)u=a=='\n'?u:a;});
+    for(;memset(o,'.',F);){
+        o[A]='x';
+        for(C*c=b;c;c=c->h){
+            if (o[c->l]=='O'|f->l>=F|f->l<0)
                 exit(s);
             o[c->l]='O';
-            c=c->h;
         }
-        for(i=0;i<F;i++)
-            printf(i%20?"%c":"%c\n",o[i]);
+        for(i=0;i<F+20;i++)printf(i<F&&i%20?"%c":"\n%c",i<F?o[i]:0);
         this_thread::sleep_for(400ms);
-        for(i=0;i<20;i++)printf("\n");
         d=((u>100)*19+1)*(2*!(u%5)-1);
         f=f->h=new C(*f);
-        f->l+=d;
-        if(f->l==A){
-            s++;
-            A=rand()%F;
-        }else{
+        if((f->l+=d)==A)
+            s++,A=rand()%F;
+        else{
             C*p=b;
             b=b->h;
             delete p;
