@@ -15,47 +15,47 @@
 //-2 extra if (a) and (b) are both done
 //-16 if you think the snake should segfault when hitting the top and bottom wall instead of exiting and showing the score
 //-9 if memory leaks
-
+// 
+//(done) -16 by obfuscation of character to direction conversion
+//(done) -2 by swapping F and 400
+//(done) -1 by double-initialize
 using namespace std;
 typedef int I;
-I d=1,s=0,A=9,i;
+I d=1,s=0,A=9,i,F=400;
 char o[400],u,a;
 struct C {
     C*h=0;
     I l=0;
 };
-I*b=new I[2];I*f=b;
-I v(){
-    for(;;){
+C*b=new C,*f=b;
+I main(){
+    thread T([]{for(;;){
         a=getchar();
         u=a=='\n'?u:a;
-    }
-}
-I main(){
-    thread T(v);
+    }});
     for(;;){
-        memset(o,' ',400);
-        I*c=b;
+        memset(o,' ',F);
+        C*c=b;
         for(;c;){
             o[A]='x';
-            if (o[c[1]=='O'|f[1]>400|f[1]<0)
+            if (o[c->l]=='O'|f->l>F|f->l<0)
                 exit(s);
-            o[c[1]]='O';
-            c=c[0];
+            o[c->l]='O';
+            c=c->h;
         }
-        for(i=0;i<400;i++)
+        for(i=0;i<F;i++)
             printf(i%20?"%c":"%c\n",o[i]);
         this_thread::sleep_for(400ms);
         for(i=0;i<20;i++)printf("\n");
-        d=u=u=='d'?1:u=='a'?-1:u=='w'?-20:u=='s'?20:d;
-        f=*f[0]=new I[2];
-        f[1]+=d;
-        if(f[1]==A){
+        d=((u>100)*19+1)*(2*!(u%5)-1);
+        f=f->h=new C(*f);
+        f->l+=d;
+        if(f->l==A){
             s++;
-            A=rand()%400;
+            A=rand()%F;
         }else{
-            I*p=b;
-            b=b[0];
+            C*p=b;
+            b=b->h;
             delete p;
         }
     }
