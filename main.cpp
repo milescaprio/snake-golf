@@ -15,25 +15,18 @@
 //(b) -27 if the back of the snake stays glued to the ground and keeps lengthening
 //-2 extra if (a) and (b) are both done
 //-16 if you think the snake should segfault when hitting the top and bottom wall instead of exiting and showing the score
+//
+// might be outdated ^
+// 
 //-9 if memory leaks
 //+17 or less to make the gap happen before the sleep (either change to two for loops or offset the big one by 20 for
 //the index and change the checks to the bottom)
 //+~16 to make the complex logic of the keypresses filter misinputs
 //~-5 if apple pseudorandom with mod 99 instead of rand()
-
-//(done) -1 memset in for loop
-//(done) -3 getchar in for loop
-//(done) -1 pointer incr in for loop
-//(done) -3 direction increment done in if loop
-//(done) -1 added init to for loop
-//(done) +1 fixed extra byte read bug :(
-//(done) -2 used more commas
-//(done) -16 onelooped all the printf, changes location
-//(done) -5 changes characters to ascii values
-//(done) -2 using instead of typedef
-//(done) -2 more for inlining
-//(done) -1 more for inlining
-//459
+//-2 if made to 21 and 441 cuz then could use (x&2)*10+1 instead of (x>100)*19+1, the problem is 19 is odd
+// 
+//(done) -1 used less than instead
+//458
 using namespace std;
 using I=int;
 I d=1,s=0,A=9,F=400;
@@ -44,12 +37,12 @@ struct C{
 };
 I main(){
     thread T([]{
-        for(;a=getchar();)u=a==10?u:a;
+        for(;a=getchar();)u=a<97?u:a;
         });
     for(C*b=new C,*f=b;memset(o,46,F);){
         I i=0;
         for(C*c=b;c;o[c->l]=79,c=c->h)if(o[c->l]==79|f->l>=F|f->l<0)exit(s);
-        for(o[A]=120;i<F+20;++i)printf(i<F&&i%20?"%c":"\n%c",i<F?o[i]:0);
+        for(o[A]=120;i<F+20;++i)printf(i<F&&i%20?"%c":"\n%c",(i<F)*o[i]);
         this_thread::sleep_for(400ms);
         d=((u>100)*19+1)*(2*!(u%5)-1);
         f=f->h=new C(*f);
