@@ -6,6 +6,7 @@
 
 //-30 bytes if you remove spacing between outputs
 //-14 if you make the screen 3x3 instead, replacing all 400s with 9s and 20s with 3s
+//-2 if all 400 substituted with 100 and all 20 substituted with 10, then reuse of F for the character comparison
 //(a) -9 if scoring is removed (s var)
 //-1 or -2 if you make the output rate verty high
 //-30 if you make the output rate the same speed as your pc
@@ -17,7 +18,9 @@
 //-9 if memory leaks
 //+17 or less to make the gap happen before the sleep (either change to two for loops or offset the big one by 20 for
 //the index and change the checks to the bottom)
-// 
+//+~16 to make the complex logic of the keypresses filter misinputs
+//~-5 if apple pseudorandom with mod 99 instead of rand()
+
 //(done) -1 memset in for loop
 //(done) -3 getchar in for loop
 //(done) -1 pointer incr in for loop
@@ -26,32 +29,31 @@
 //(done) +1 fixed extra byte read bug :(
 //(done) -2 used more commas
 //(done) -16 onelooped all the printf, changes location
-
-//469
+//(done) -5 changes characters to ascii values
+//(done) -2 using instead of typedef
+//(done) -2 more for inlining
+//(done) -1 more for inlining
+//459
 using namespace std;
-typedef int I;
-I d=1,s=0,A=9,i,F=400;
+using I=int;
+I d=1,s=0,A=9,F=400;
 char o[400],u,a;
-struct C {
+struct C{
     C*h=0;
     I l=0;
 };
-C*b=new C,*f=b;
 I main(){
-    thread T([]{for(;a=getchar();)u=a=='\n'?u:a;});
-    for(;memset(o,'.',F);){
-        o[A]='x';
-        for(C*c=b;c;c=c->h){
-            if (o[c->l]=='O'|f->l>=F|f->l<0)
-                exit(s);
-            o[c->l]='O';
-        }
-        for(i=0;i<F+20;i++)printf(i<F&&i%20?"%c":"\n%c",i<F?o[i]:0);
+    thread T([]{
+        for(;a=getchar();)u=a==10?u:a;
+        });
+    for(C*b=new C,*f=b;memset(o,46,F);){
+        I i=0;
+        for(C*c=b;c;o[c->l]=79,c=c->h)if(o[c->l]==79|f->l>=F|f->l<0)exit(s);
+        for(o[A]=120;i<F+20;++i)printf(i<F&&i%20?"%c":"\n%c",i<F?o[i]:0);
         this_thread::sleep_for(400ms);
         d=((u>100)*19+1)*(2*!(u%5)-1);
         f=f->h=new C(*f);
-        if((f->l+=d)==A)
-            s++,A=rand()%F;
+        if((f->l+=d)==A)++s,A=rand()%F;
         else{
             C*p=b;
             b=b->h;
