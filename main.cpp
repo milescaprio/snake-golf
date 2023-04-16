@@ -4,20 +4,10 @@
 #include <chrono>  //not included in character count
 #include <thread>  //not included in character count
 
-/*
-OOOOOOOO
-OOOOOOOO
-OOOOOOOO
-OOOOOOOO
 
-..oooo
-.....o
-oooooo
-o.....
-oo....
-.oo.o.
-|       |       |       |       |       |       |
-*/
+
+
+
                 using namespace std;using I=int;
                 I d=1,s=0,A=9,F=400;char o[400],
                 u,a;struct C{C*h=0;I l=8;};I ///
