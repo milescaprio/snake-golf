@@ -26,14 +26,15 @@
 //-2 if made to 21 and 441 cuz then could use (x&2)*10+1 instead of (x>100)*19+1, the problem is 19 is odd
 // 
 //(done) -1 used less than instead
-//458
+//(done) -1 changed d logic, except it now defaults at negative, that's fine, l default upped
+//457
 using namespace std;
 using I=int;
 I d=1,s=0,A=9,F=400;
 char o[400],u,a;
 struct C{
     C*h=0;
-    I l=0;
+    I l=8;
 };
 I main(){
     thread T([]{
@@ -43,8 +44,8 @@ I main(){
         I i=0;
         for(C*c=b;c;o[c->l]=79,c=c->h)if(o[c->l]==79|f->l>=F|f->l<0)exit(s);
         for(o[A]=120;i<F+20;++i)printf(i<F&&i%20?"%c":"\n%c",(i<F)*o[i]);
-        this_thread::sleep_for(400ms);
-        d=((u>100)*19+1)*(2*!(u%5)-1);
+        this_thread::sleep_for(200ms);
+        d=(u&2?20:1)*((u&2^u/2&2)-1);
         f=f->h=new C(*f);
         if((f->l+=d)==A)++s,A=rand()%F;
         else{
