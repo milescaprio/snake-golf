@@ -1,9 +1,34 @@
-#include <thread>
-#include <stdio.h>
-#include <cstring>
-#include <chrono>
-#include <cstdlib>
+#include <stdio.h> //msvc infers
+#include <cstring> //msvc infers
+#include <cstdlib> //msvc infers
+#include <chrono>  //not included in character count
+#include <thread>  //not included in character count
 
-//formatting 3
 
-using namespace std;typedef int I;I d=1,s=0,X=5,Y=5,i,j;char o[20][20],u,a;struct C{C*h=0;I x=0,y=0;void Z(){h=new C(*this);h->x+=d%2;h->y+=d/2;}};C*b=new C,*f;void g(C*t,I N){if(!N){f=t;return;}t->Z();g(t->h,N-1);}void v(){for(;;){a=getchar();if(a!='\n')u=a;}}I main(){g(b,5);thread T(v);for(;;){memset(o,' ',400);C*c=b;while(c){char&p=o[c->y][c->x];o[Y][X] = 'x';if (p=='O'){exit(s);}p='O';c=c->h;}for(i=0;i<20;i++){for(j=0;j<20;j++){printf("%c",o[i][j]);}printf("\n");}this_thread::sleep_for(400ms);for(i=0;i<20;i++)printf("\n");if(u=='d')d=1;if(u=='a')d=-1;if(u=='w')d=-2;if(u=='s')d=2;u=0;f->Z();f=f->h;if(f->x>19|f->y>19|f->y<0|f->x<0)exit(s);if(f->x==X&f->y==Y){s++;X=rand()%20;Y=rand()%20;}else{C*p=b;b=b->h;delete p;}}}
+
+
+
+                using namespace std;using I=int;
+                I d=1,s=0,A=9,F=400;char o[400],
+                u,a;struct C{C*h=0;I l=8;};I ///
+                main(){thread T([]{for(;a=//////
+                                        getchar(
+                                        );)u=a//
+                                        <97?u:a;
+                                        });for(C
+*b=new C,*f=b;memset(o,46,F);){I i=0;for(C*c=b;c
+;o[c->l]=79,c=c->h)if(o[c->l]==79|f->l>=F|f->l<0
+)exit(s);for(o[A]=120;i<F+20;++i)printf(i<F&&i//
+%20?"%c":"\n%c",(i<F)*o[i]);this_thread::///////
+sleep_for
+(200ms);
+d=(u&2//
+?20:1)*(
+(u&2^u/2&2)-1);f
+=f->h=new C(*f);
+if((f->l+=d)==A)
+++s,A=rand()%F//
+        ;else{C*p=b;b=/*        */b->h//
+        ;delete p;}}}/*/        Thanks 4
+        playn snake! 457        charsC++
+        (c)MilesCaprio          2023V2.0      */
