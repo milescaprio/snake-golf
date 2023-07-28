@@ -1,21 +1,14 @@
 # snake-golf
 
-Obfuscated snake game...
-
-
-
-
-
-
-
-
-
-
+Obfuscated Snake Game.
 
 All STL C++, runs in command window, no external libraries!
 
-457 characters, includes not included (stdio, chrono, thread, cstring, cstdlib)
+457 characters, include statements not included (stdio, chrono, thread, cstring, cstdlib)
 
-Have fun
+Many things had corners cut to reduce characters. View commit history to see the code collapsing, and ways to 
+change the code to accommodate the game for your needs if you would like.
+
+![image](https://i.imgur.com/bqDzklO.png)
 
 Can you beat me? :)
